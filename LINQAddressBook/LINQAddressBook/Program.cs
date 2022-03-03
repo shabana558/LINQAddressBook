@@ -40,7 +40,10 @@ namespace LINQAddressBook
             dataTableManger.InsertintoDataTable(contactDataManagers);
             dataTableManger.Display();
             //Modify
-            int varl = dataTableManger.EditDataTable("shaik", "Lastname");
+            int varl = dataTableManger.EditDataTable("Shafi", "Lastname");
+            Console.WriteLine("Success" + varl);
+            //Delete
+            int var2 = dataTableManger.DeleteRowInDataTable("Shaik");
             Console.WriteLine("Success" + varl);
         }
     }

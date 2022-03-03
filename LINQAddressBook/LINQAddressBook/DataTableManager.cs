@@ -129,8 +129,8 @@ namespace LINQAddressBook
             contactDataManager.City = "Hyderabad";
             contactDataManager.State = "Telangana";
             contactDataManager.zip = 500013;
+            contactDataManager.Type = "Friends";
             InsertintoDataTable(contactDataManager);
-
 
             //Insert Values into Table
             contactDataManagers.FirstName = "Shaik";
@@ -141,10 +141,20 @@ namespace LINQAddressBook
             contactDataManagers.City = "Kadapa";
             contactDataManagers.State = "AndhraPradesh";
             contactDataManagers.zip = 516193;
+            contactDataManager.Type = "Family";
+            InsertintoDataTable(contactDataManagers);
+            contactDataManagers.FirstName = "Shaik";
+            contactDataManagers.LastName = "Shakil";
+            contactDataManagers.PhoneNumber = 987654321;
+            contactDataManagers.Email = "shakil@gmail.com";
+            contactDataManagers.Address = "Bestastreet,Porumamilla";
+            contactDataManagers.City = "Kadapa";
+            contactDataManagers.State = "AndhraPradesh";
+            contactDataManagers.zip = 516193;
+            contactDataManager.Type = "Fam";
             InsertintoDataTable(contactDataManagers);
             return custTable.Rows.Count;
         }
-
         //Insert values in Data Table
         public void InsertintoDataTable(ContactDataManager contactDataManager)
         {
@@ -158,6 +168,7 @@ namespace LINQAddressBook
             dtRow["PhoneNumber"] = contactDataManager.PhoneNumber;
             dtRow["Email"] = contactDataManager.Email;
             custTable.Rows.Add(dtRow);
+
         }
         public int EditDataTable(string FirstName, string ColumnName)
         {
@@ -165,12 +176,11 @@ namespace LINQAddressBook
             var modifiedList = (from ContactList in custTable.AsEnumerable() where ContactList.Field<string>("FirstName") == FirstName select ContactList).FirstOrDefault();
             if (modifiedList != null)
             {
-                modifiedList[ColumnName] = "Shaik";
+                modifiedList[ColumnName] = "Sing";
                 Display();
                 return 1;
             }
             else return 0;
-
         }
         //Delete a row from DataTable based on Name
         public int DeleteRowInDataTable(string FirstName)
@@ -180,7 +190,7 @@ namespace LINQAddressBook
             if (modifiedList != null)
             {
                 modifiedList.Delete();
-                Console.WriteLine("After Deletion");
+                Console.WriteLine("--- After Deletion ---");
                 Display();
                 return 1;
             }
@@ -252,7 +262,7 @@ namespace LINQAddressBook
         }
         //Display all Values in DataRow
         public void Display()
-            {
+        {
             foreach (DataRow dtRows in custTable.Rows)
             {
                 Console.WriteLine("{0} \t {1} \t {2} \t {3} \t {4} \t {5} \t {6} \t {7}\n", dtRows["FirstName"], dtRows["LastName"], dtRows["Address"], dtRows["City"], dtRows["State"], dtRows["Zip"], dtRows["PhoneNumber"], dtRows["Email"]);
